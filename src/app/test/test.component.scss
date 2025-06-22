@@ -1,0 +1,28 @@
+.mobileCard{
+    .mobileImg{
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .noProdImg{
+         height: 250px;
+        width: 100%;
+        background-color: #ededed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.mobileCard{
+    .unavailable{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &.notavailable .card-body{
+       filter : blur(2px)
+    }
+}

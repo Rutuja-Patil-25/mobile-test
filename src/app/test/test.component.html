@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-12 mb-4" *ngFor="let mobile of mobileArr">
+        <div class="card mobileCard"
+       [ngClass]="{
+        notavailable : !mobile.isAvailable
+       }">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img 
+                        *ngIf="mobile.image; else noImg"
+                        class="mobileImg"
+                        [src]="mobile.image" 
+                        [alt]="mobile.name"
+                       [title]="mobile.name">
+
+                        <ng-template #noImg>
+                            <p class="noProdImg">
+                                NO PRODUCT IMAGE !!!
+                            </p>
+                        </ng-template>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="specification">
+                             <h3>
+                            {{mobile.name}} <span
+                            [ngClass]="{
+                                'badge-success' : mobile.rating >= 4,
+                                'badge-warning' : mobile.rating < 4 && mobile.rating >= 3,
+                                'badge-danger' : mobile.rating < 3
+                            }"
+                            class="badge text-white p-2"
+                            >{{mobile.rating}}</span>
+                         </h3>
+                         <ul class="list-group">
+                            <li class="list-group-item" *ngFor="let fea of mobile.features">
+                              {{fea}}
+                            </li>
+                         </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                          <h4>
+                            {{mobile.price | currency : "INR"}} <br>
+                            <small>
+                                <del>{{mobile.price + 150}}</del>
+                            </small>
+                          </h4>
+                          <strong class="text-danger" *ngIf="mobile.noOfItems < 10">
+                            only {{mobile.noOfItems}} left !!!
+                          </strong>
+                    </div>
+                </div>
+            </div>
+            <p class="text-danger unavailable font-weight-bold" *ngIf="!mobile.isAvailable">
+                Currently unavailable !!!
+            </p>
+        </div>
+    </div>
+</div>
